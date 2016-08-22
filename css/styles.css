@@ -1,0 +1,63 @@
+body {
+  color: #333;
+}
+
+body, input, button {
+  line-height: 1.4;
+  font: 13px Helvetica,arial,freesans,clean,sans-serif;
+}
+
+
+a {
+  color: #4183C4;
+  text-decoration: none;
+}
+
+#examples a {
+  text-decoration: underline;
+}
+
+
+.map_canvas { 
+    width: 100%;
+    height: 500px;
+    margin: 10px 20px 10px 0;
+}
+
+#multiple li { 
+  cursor: pointer; 
+  text-decoration: underline; 
+}
+.wrapper{
+    height: auto;
+    min-height: 500px;
+    border: 1px solid;
+    width:auto;
+    max-width: 700px;
+    margin: 0px auto;
+    padding: 20px 20px 20px 20px;
+}
+
+#geocomplete {
+    width: 70%;
+    height: 35px;
+    text-indent: 10px;
+    text-transform: capitalize;
+}
+
+#find{
+    width: 27%;
+    height: 40px;
+    float: right;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+.block {
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.block label {
+    width: 75px;
+    display: inline-block;
+}
