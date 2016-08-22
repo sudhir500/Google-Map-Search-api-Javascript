@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Google map Place Finder</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+  </head>
+  <body>
+<div class="wrapper">
+    <form>
+      <input id="geocomplete" type="text" placeholder="find any location" size="100" />
+      <input id="find" type="button" value="find" />
+    </form>
+        
+    <div class="map_canvas"></div>
+    <hr />
+    <button id="search">.geocomplete("find", "Patna")</button>
+    <button id="center">.geocomplete("map").setCenter()</button>
+    <br /><br />
+ <form>
+    <fieldset>
+        <h3>Address-Details</h3>
+        <div class="block">
+            <label>Name</label>
+            <input name="name" type="text" value="">
+        </div>
+        <div class="block">
+            <label>Latitude</label>
+            <input name="lat" type="text" value="">
+        </div>
+        <div class="block">
+            <label>Longitude</label>
+            <input name="lng" type="text" value="">
+        </div>
+        <div class="block">
+            <label>Location</label>
+            <input name="location" type="text" value="">
+        </div>
+    </fieldset>
+</form>
+</div>    
+    
+    <script src="http://maps.googleapis.com/maps/api/js?sensor=false&amp;libraries=places"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+    <script src="js/jquery.geocomplete.js"></script>
+     
+    <script>
+      $(function(){
+        
+        var center = new google.maps.LatLng(20.593684,78.96288); // enter 0,0, for full word map
+        $("#geocomplete").geocomplete({
+          map: ".map_canvas",
+          //types: ['establishment'], enable this if you want to restric search within an area
+          //bounds: defaultBounds,
+           markerOptions: {
+            draggable: true
+          },
+          details: "form",
+          blur: true,
+          geocodeAfterResult: true
+        });
+        
+        // bind the draggable value
+        $("#geocomplete").bind("geocode:dragged", function(event, latLng){
+          $("input[name=lat]").val(latLng.lat());
+          $("input[name=lng]").val(latLng.lng());    
+        });
+        
+        var map =  $("#geocomplete").geocomplete("map")
+        map.setCenter(center);
+        map.setZoom(4);
+        
+        
+        $("#search").click(function(){
+          $("#geocomplete").geocomplete("find", "Patna");
+           // $("#geocomplete").trigger("find", "Patna");
+        });
+        
+        $("#center").click(function(){
+          var map = $("#geocomplete").geocomplete("map"),
+            center = new google.maps.LatLng(0,0);
+          map.setCenter(center);
+          map.setZoom(1);
+        });
+      });
+    </script>
+  </body>
+</html>
+
